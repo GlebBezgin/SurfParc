@@ -4,6 +4,7 @@ function [roi_wghts,roi_wghtsInv] = weigh_roi_distal(roi_verts, roi_faces, strip
 % (more objective than weigh_roi, as it uses same apprch as trnst regions)
 % isLo: 1 if lo (for last terminus), 0 if hi (for 1st terminus; should b invrtd)
 % (2do: either isLo, or 2 outputs)
+% Copyright Gleb Bezgin 2024
 
 roi_wghts = zeros(size(roi_verts));
 iter_n = 0;
