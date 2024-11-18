@@ -1,3 +1,4 @@
+% Copyright Gleb Bezgin 2024
 % cd to directory where the contents of this demo are unzipped
 
 % early visual regions map
