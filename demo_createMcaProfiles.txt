@@ -1,0 +1,65 @@
+% cd to directory where the contents of this demo are unzipped
+
+% early visual regions map
+VIS_HIER = textread('vis_hier.txt');
+vis_labels = {'V1','V2','V3','V3A','V4','VOT'};
+
+% add surfstat to path (needed to read and view surface); freely available at:
+% https://www.math.mcgill.ca/keith/surfstat/
+
+% read surface
+surfR = SurfStatReadSurf1('icbm_avg_mid_sym_mc_right.obj');
+
+% test surf and overlay map
+figure; SurfStatView1(VIS_HIER, surfR); axis off
+
+% run ordered subparcellation step of MCA
+% output: 1st param: ordered subparcels; 2nd param: relation to input map
+[vis_assig_natR, vis_stages_vecR] = runMcaOrdSubparc(VIS_HIER, surfR);
+
+% test subparcels overlay
+figure; SurfStatView1(vis_assig_natR, surfR); axis off
+
+% now sample GM density data (from NKI-RS dataset) on these subparcels
+tbl_nki = readtable('gmdens_data/nkiRs_phenTable_10sbjs.xlsx');
+gmd_files = cell(size(tbl_nki.ID));
+for i=1:size(tbl_nki.ID,1)
+    gmd_files{i} = ['gmdens_data/' tbl_nki.ID{i} '_right.txt'];
+end
+
+% profiling
+prflsR = NaN(length(gmd_files),length(vis_stages_vecR));
+for i=1:length(gmd_files)
+    dataR = textread(gmd_files{i});
+    disp(['creating profiles, subject ' num2str(i) ' of ' num2str(length(gmd_files))])
+    vec_assigR = NaN(1, size(1:max(vis_assig_natR),2));
+    for k=1:length(vis_stages_vecR)
+        vec_assigR(k) = nanmean(dataR(vis_assig_natR==k));
+    end
+    prflsR(i,:) = vec_assigR;
+end
+
+% === visualize profiles ===
+
+    vis_stages_vec_diffR = diff(vis_stages_vecR);
+    vis_stages_vec_diffR = [0; vis_stages_vec_diffR];
+    
+vis_clrmp = jet(size(tbl_nki,1));
+figure;
+for i=1:size(tbl_nki,1)
+    plot(prflsR(i,:),'color', vis_clrmp(i,:), 'linewidth',2);
+    hold on;
+end
+line([find(vis_stages_vec_diffR) find(vis_stages_vec_diffR)], get(gca,'ylim'),'color',[0 0 0],'linestyle','--');
+set(gca,'xtick',[])
+axis tight
+
+% put x-labels
+x_set = [0; find(vis_stages_vec_diffR); length(vis_stages_vecR)];
+y_set = zeros(length(x_set)-1,1);
+for i=1:length(y_set)
+    % to put those labels in the centre of each region's profile
+    y_set(i) = x_set(i) + round( (x_set(i+1) - x_set(i))/2 );
+end
+set(gca,'xtick',y_set,'xticklabel',vis_labels);
+h = gca; h.XAxis.TickLength = [0 0];
