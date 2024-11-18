@@ -10,6 +10,7 @@ function [half_set,nghbr_boundary] = halfLabelRoi(ths_lbl, nghbr_lbl, hlh_wghts,
 % nghbrs - to save time, have all nghbrs input (from findNghbrs*)
 % OUTPUT: ones for half-roi adjacent to specified nghbr, zeros otherwise.
 % Used by: orderedParcelsTransform
+% Copyright Gleb Bezgin 2024
 
 % For ordered parclns, ths shld b the case (change otherwise)
 if abs(ths_lbl - nghbr_lbl) ~= 1
