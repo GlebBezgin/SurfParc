@@ -1,3 +1,4 @@
+# Copyright Gleb Bezgin 2024
 Unzip the package; then execute line-by-line the following code in MATLAB:
 
 demo_createMcaProfiles.txt
