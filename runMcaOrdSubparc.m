@@ -5,6 +5,7 @@ function [new_assig_nat,stages_vec] = runMcaOrdSubparc(labels,surf)
 % preceding and successive ROIs.
 % input: verts (braak labels), faces<-surf (obtain nghbrs from it!)
 % i.e. nghbrs = findNghbrs4allVrts(surf_tri)
+% Author: Gleb Bezgin
 % Copyright Gleb Bezgin 2024
 
 % init weights vector
