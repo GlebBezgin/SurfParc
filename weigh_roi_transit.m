@@ -7,6 +7,7 @@ function roi_wghts = weigh_roi_transit(roi_verts, roi_faces, strip_lo, strip_hi,
 % neightbours as obtained using findNghbrs4allVrts.
 % Returns weights from negative near N-1 through 0 to positive near N+1.
 % Used by runMcaOrdSubparc
+% Author: Gleb Bezgin
 % Copyright Gleb Bezgin 2024
 
 % first weigh roi from 1 periph to ..(centre)
