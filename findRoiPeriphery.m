@@ -15,6 +15,7 @@ function perif_verts = findRoiPeriphery(roi_verts,roi_faces)
 % NOTE2: when supplying input, make sure there are only those faces which
 % contain ALL existing vertices (i.e. if e.g. 1 vertex in a face is not a 
 % part of the vertex list, it shouldn't be included)
+% Author: Gleb Bezgin
 % Copyright Gleb Bezgin 2024
 
 % 2or1 verts, no faces, or some verts have no triangles (latter dif-t4compd)
