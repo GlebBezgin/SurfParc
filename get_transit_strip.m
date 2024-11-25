@@ -10,6 +10,7 @@ function ths_strip = get_transit_strip(ths_lbl, nghbr_lbl, prcl_ths_perif_inds, 
 % nghbrs - to save time, have all nghbrs input (from findNghbrs*)
 % OUTPUT: ones for half-roi adjacent to specified nghbr, zeros otherwise.
 % Used by: orderedParcelsTransform
+% Author: Gleb Bezgin
 % Copyright Gleb Bezgin 2024
 
 % For ordered parclns, ths shld b the case (change otherwise)
