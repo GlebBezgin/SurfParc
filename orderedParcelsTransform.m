@@ -17,6 +17,7 @@ function [new_assig_nat,stages_vec] = orderedParcelsTransform(orig_assig,labels,
 % DEPENDENCIES:
 % findNghbrs4allVrts - map each vertex to the list of its neighbours
 % halfLabelRoi - label roi by criterion of its adjacency to another roi
+% Author: Gleb Bezgin
 % Copyright Gleb Bezgin 2024
 
 % first and last ordered parcels
