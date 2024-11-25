@@ -2,6 +2,7 @@ function nghbrs = findNghbrs4allVrts(surf_tri)
 
 % just a quick convenience func, neighbours of each vertex (using faces)
 % Used by: orderedParcelsTransform
+% Author: Gleb Bezgin
 % Copyright Gleb Bezgin 2024
 
 nghbrs = cell(max(max(surf_tri)),1);
